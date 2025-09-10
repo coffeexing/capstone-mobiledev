@@ -1,0 +1,83 @@
+# ===============================
+# 1. 全局通用忽略规则
+# ===============================
+# 系统文件
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE 配置
+.idea/
+.vscode/
+*.iml
+
+# 日志与临时文件
+*.log
+*.tmp
+*.bak
+
+# 环境变量文件
+.env
+*.local
+
+# ===============================
+# 2. 微信小程序 (capstone-miniapp)
+# ===============================
+# Node 依赖
+capstone-miniapp/node_modules/
+
+# 构建产物
+capstone-miniapp/dist/
+capstone-miniapp/miniprogram_npm/
+
+# 缓存文件
+capstone-miniapp/.cache/
+capstone-miniapp/.temp/
+
+# IDE 配置
+capstone-miniapp/.vscode/
+capstone-miniapp/.idea/
+
+# 微信开发者工具生成的临时配置
+capstone-miniapp/project.private.config.json
+capstone-miniapp/project.config.json.backup
+
+# 建议保留 project.config.json（包含小程序 AppID 和构建配置）
+# 如果团队成员 AppID 不一样，可把它也加入忽略
+# capstone-miniapp/project.config.json
+
+# ===============================
+# 3. Spring Boot 后端 (capstone-springboot)
+# ===============================
+# 构建产物
+capstone-springboot/target/
+capstone-springboot/build/
+
+# 日志文件
+capstone-springboot/logs/
+capstone-springboot/*.log
+
+# 本地配置文件（避免上传敏感信息）
+capstone-springboot/src/main/resources/application*.yml
+capstone-springboot/src/main/resources/application*.properties
+
+# IDE 配置
+capstone-springboot/.idea/
+capstone-springboot/.vscode/
+capstone-springboot/*.iml
+
+# 依赖缓存
+capstone-springboot/.mvn/
+capstone-springboot/.gradle/
+
+# ===============================
+# 4. 其他可选规则
+# ===============================
+# 本地脚本
+scripts/
+*.sh
+
+# 测试报告
+reports/
+coverage/
