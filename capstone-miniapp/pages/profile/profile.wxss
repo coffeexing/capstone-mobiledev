@@ -1,0 +1,103 @@
+/* pages/profile/profile.wxss */
+/* 页面整体留出底部固定按钮空间（含安全区） */
+.page{
+  box-sizing: border-box;
+  padding-bottom: calc(180rpx + env(safe-area-inset-bottom));
+}
+
+/* 通用卡片风格（和 home 一致的圆角白底 + 阴影） */
+.card{
+  margin: 30rpx;
+  padding: 40rpx;
+  background-color: white;
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.06);
+}
+
+/* 顶部资料卡 */
+.profile{ display:flex; align-items:center; }
+.avatar{ width:96rpx; height:96rpx; border-radius:50%; background:#f1f1f1; }
+.uinfo{ margin-left:20rpx; }
+.uname{ font-size:32rpx; font-weight:600; color:#111; }
+.usub{ margin-top:8rpx; font-size:26rpx; color:#8a8f99; }
+
+/* 大神卡 */
+.plus-card{ display:flex; align-items:center; }  /* 左文案 + 右按钮 */
+.left{ flex:1; min-width:0; }                    /* 用 left 占位把按钮推到最右 */
+
+.ptitle{ font-size:32rpx; font-weight:600; color:#111; margin-bottom:8rpx; }
+.psub{ font-size:26rpx; color:#6b7280; }
+.open-btn{
+  /* --- 尺寸尽量小 --- */
+  display:inline-flex; align-items:center; justify-content:center;
+  height:72rpx;           /* 比 72rpx 小很多 */
+  padding:0 40rpx !important;        /* 横向留白变小 */
+  font-size:24rpx !important;        /* 字体也缩小 */
+  line-height:72rpx !important;      /* 或者删掉 line-height，靠 flex 居中即可 */
+
+  /* --- 外观 --- */
+  background:#2b2b2b; color:#fff;
+  border-radius:999rpx;
+
+  /* --- 把 button 的宽度限制在内容宽 --- */
+  width:auto; min-width:auto; box-sizing:border-box;
+}
+
+/* 去掉小程序 button 的默认点击描边 */
+.open-btn::after{ border:none; }
+
+/* 统计卡片 */
+.stats{ padding: 24rpx 0; }
+.sgrid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
+.sitem{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.has-border{ border-left: 1rpx solid #eee; }
+
+.snum{
+  display: flex;
+  align-items: baseline;
+  gap: 8rpx;
+}
+.sval{ font-size: 36rpx; font-weight: 600; color:#111; }
+.sunit{ font-size: 22rpx; color:#9aa3af; }
+.slabel{
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  color:#6b7280;
+  display:flex; align-items:center; gap:8rpx;
+}
+.sicon{ width: 28rpx; height: 28rpx; }
+
+
+/* 常用功能 */
+.block{}
+.btitle{ font-size:30rpx; font-weight:600; margin-bottom:20rpx; color:#111; }
+.grid{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22rpx 10rpx;
+}
+.gitem{ display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.gicon{ width:64rpx; height:64rpx; margin-bottom:10rpx; }
+.gname{ font-size:24rpx; color:#111; }
+
+/* 固定底部退出按钮 */
+.logout-bar{
+  position:fixed; left:0; right:0; bottom:0;
+  padding: 40rpx 24rpx;
+  background:transparent; z-index:1000;
+}
+.logout-btn{
+  width:50vh !important; height:96rpx; line-height:64rpx;
+  border-radius:48rpx; text-align:center;
+  background:#E53935; color:#fff; font-size:32rpx; font-weight:600;
+  box-shadow:0 10rpx 24rpx rgba(229,57,53,0.25);
+}

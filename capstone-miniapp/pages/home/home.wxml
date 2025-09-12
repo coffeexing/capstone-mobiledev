@@ -1,0 +1,116 @@
+<!--index.wxml-->
+<scroll-view class="scroll" scroll-y show-scrollbar="false" scroll-with-animation>
+  <view class="top">
+    <swiper autoplay="true" interval="2500" indicator-dots circular>
+      <block wx:for="{{[1, 2, 3, 4, 5, 6, 7]}}" wx:key="*this">
+        <swiper-item class="poster">
+          <image src="/assets/swiper/{{item}}.png" mode="aspectFill" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="card member-card" wx:if="{{isLogin}}">
+    <view class="member-row">
+      <image class="avatar" src="/assets/avatar.png" mode="aspectFill" />
+      <view class="member-info">
+        <view class="phone">{{userInfo.username}}</view>
+        <view class="tag">{{userInfo.vipLevel}}</view>
+      </view>
+      <view class="stats">
+        <view class="stat">
+          <view class="stat-num">{{userInfo.coins}}</view>
+          <view class="stat-text">奶茶币</view>
+        </view>
+        <view class="stat">
+          <view class="stat-num">{{userInfo.coupons}}</view>
+          <view class="stat-text">优惠券</view>
+        </view>
+      </view>
+    </view>
+    <view class="progress">
+      <view class="bar-bg"></view>
+      <view class="bar-fill" style="width: {{userInfo.progressPercent}}%;"></view>
+    </view>
+    <view class="progress-text">{{userInfo.progress}}/{{userInfo.progressMax}}</view>
+  </view>
+  <view class="card login-card" wx:if="{{!isLogin}}">
+    <image class="login-avatar" src="/assets/avatar.png"></image>
+    <view class="login-text">
+      <view class="login-title">尊敬的用户</view>
+      <view class="login-sub">登录领取20元新人券包</view>
+    </view>
+    <button class="login-btn" bindtap="onAuthorizeTap">授权登录</button>
+  </view>
+  <view class="card services-card">
+    <!-- 两大入口 -->
+    <view class="card entry-card">
+      <navigator class="entry" url="/pages/cart/cart" hover-class="none">
+        <image class="entry-img" src="/assets/services/pickup.png" />
+        <view class="entry-title">到店自取</view>
+        <view class="entry-sub">下单<text class="pink">免排队</text></view>
+      </navigator>
+      <navigator class="entry" url="/pages/cart/cart" hover-class="none">
+        <image class="entry-img" src="/assets/services/delivery.png" />
+        <view class="entry-title">奶茶外送</view>
+        <view class="entry-sub">甜蜜送到家</view>
+      </navigator>
+    </view>
+    <view class="divider-horizontal"></view>
+    <!-- 功能宫格 -->
+    <view class="card grid-card">
+      <view class="grid">
+        <view class="grid-item" bindtap="onTodoTap">
+          <image class="grid-icon" src="/assets/services/membership.png" />
+          <view class="grid-title">会员中心</view>
+          <view class="grid-sub">领30元券包</view>
+        </view>
+        <view class="grid-item" bindtap="onTodoTap">
+          <image class="grid-icon" src="/assets/services/balance.png" />
+          <view class="grid-title">我的余额</view>
+          <view class="grid-sub">首充福利</view>
+        </view>
+        <view class="grid-item" bindtap="onTodoTap">
+          <image class="grid-icon" src="/assets/services/promotion.png" />
+          <view class="grid-title">我的推广</view>
+          <view class="grid-sub">送TA心意</view>
+        </view>
+        <view class="grid-item" bindtap="onTodoTap">
+          <image class="grid-icon" src="/assets/services/contact.png" />
+          <view class="grid-title">联系客服</view>
+          <view class="grid-sub">反馈问题</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 徽章任务 -->
+  <view class="card badge-card" wx:if="{{isLogin}}">
+    <view class="badge-row">
+      <image class="badge-icon" src="/assets/images/badge.png" />
+      <view class="badge-main">
+        <view class="badge-title">点一杯奶茶</view>
+        <view class="task-progress">
+          <view class="task-bar-bg"></view>
+          <view class="task-bar-fill" style="width: {{taskPercent}}%;"></view>
+          <text class="task-text">{{userInfo.taskDone}}/{{userInfo.taskTotal}}</text>
+        </view>
+      </view>
+      <button class="btn-primary" size="mini" hover-class="none" bindtap="onOrderTap">马上点亮</button>
+    </view>
+  </view>
+  <!-- 大家都在喝（横向滚动） -->
+  <view class="card drink-scroll">
+    <view class="drink-hd">
+      <text class="drink-title">大家都在喝</text>
+    </view>
+    <scroll-view class="goods" scroll-x show-scrollbar="false" scroll-with-animation>
+      <block wx:for="{{drinks}}" wx:key="id">
+        <view class="item" data-id="{{item.id}}">
+          <image class="pic" src="{{item.img}}" mode="aspectFill" bindtap="onOrderTap" />
+          <text class="name">{{item.name}}</text>
+          <text class="price">￥{{item.price}}</text>
+        </view>
+      </block>
+      <view class="tail-space"></view>
+    </scroll-view>
+  </view>
+</scroll-view>

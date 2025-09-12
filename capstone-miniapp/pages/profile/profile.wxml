@@ -1,0 +1,71 @@
+<!--pages/profile/profile.wxml-->
+<view class="page">
+  <!-- 顶部资料卡 -->
+  <view class="card profile">
+    <image class="avatar" src="{{avatar || '/assets/avatar.png'}}" mode="aspectFill" />
+    <view class="uinfo">
+      <view class="uname">{{nickname || '未命名用户'}}</view>
+      <!-- 这里展示 VIP 等级 -->
+      <view class="usub">{{vipLevel || '普通会员'}}</view>
+    </view>
+  </view>
+
+  <!-- 大神卡 -->
+  <view class="card plus-card">
+    <view class="left">
+      <view class="ptitle">奶茶卡</view>
+      <view class="psub">开通最高省￥40/天</view>
+    </view>
+    <button class="open-btn" size="mini" hover-class="none" bindtap="onOpenPlus">立即开通</button>
+  </view>
+
+  <!-- 统计卡片：金 / 卡券 / 礼品卡 -->
+  <view class="card stats">
+    <view class="sgrid">
+      <!-- 金 -->
+      <view class="sitem">
+        <view class="snum">
+          <text class="sval">{{coinsDisplay}}</text>
+          <text class="sunit">{{coinsUnit}}</text>
+        </view>
+        <view class="slabel">
+          <image class="sicon" src="/assets/icons/coin.png" mode="aspectFit" />金
+        </view>
+      </view>
+
+      <!-- 卡券 -->
+      <view class="sitem has-border">
+        <view class="snum">
+          <text class="sval">{{couponsDisplay}}</text>
+          <text class="sunit">张</text>
+        </view>
+        <view class="slabel">卡券</view>
+      </view>
+
+      <!-- 礼品卡 -->
+      <view class="sitem has-border">
+        <view class="snum">
+          <text class="sval">{{giftDisplay}}</text>
+          <text class="sunit">元</text>
+        </view>
+        <view class="slabel">礼品卡</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 常用功能（与 home 中的 services 一致） -->
+  <view class="card block">
+    <view class="btitle">常用功能</view>
+    <view class="grid">
+      <view class="gitem" wx:for="{{services}}" wx:key="name" bindtap="onServiceTap" data-item="{{item}}">
+        <image class="gicon" src="{{item.icon}}" mode="aspectFit" />
+        <text class="gname">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 固定底部退出 -->
+<view class="logout-bar">
+  <button class="logout-btn" hover-class="none" bindtap="onLogout">退出登录</button>
+</view>

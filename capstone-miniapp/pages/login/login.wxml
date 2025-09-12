@@ -1,0 +1,56 @@
+<!--pages/login/login.wxml-->
+<view class="page">
+  <!-- 顶部蓝色渐变欢迎区 -->
+  <view class="header">
+    <text class="hello">你好，欢迎</text>
+  </view>
+
+  <!-- 白色登录卡片 -->
+  <view class="card">
+    <view class="card-title">登录</view>
+
+    <!-- 账号 -->
+    <view class="field">
+      <input class="input"
+             placeholder="手机号 / 用户名"
+             value="{{account}}"
+             bindinput="onInputAccount"
+             maxlength="50"
+             confirm-type="next"/>
+    </view>
+
+    <!-- 密码 + 显示/隐藏 -->
+    <view class="field pwd-row">
+      <input class="input pwd-input"
+             placeholder="请输入密码"
+             value="{{password}}"
+             password="{{!showPwd}}"
+             bindinput="onInputPassword"
+             maxlength="32"
+             confirm-type="done"/>
+      <text class="toggle" bindtap="togglePwd">{{ showPwd ? '隐藏' : '显示' }}</text>
+    </view>
+
+    <!-- 协议（必选） -->
+    <view class="agree-wrap">
+      <checkbox-group bindchange="onAgreeChange">
+        <label class="agree">
+          <checkbox value="agree" checked="{{agreed}}"/>
+          <text>我已阅读并同意</text>
+          <text class="link">《用户协议》</text>
+          <text>和</text>
+          <text class="link">《隐私政策》</text>
+        </label>
+      </checkbox-group>
+    </view>
+
+    <!-- 登录按钮 -->
+    <button class="login-btn"
+            hover-class="none"
+            bindtap="onSubmit"
+            loading="{{submitting}}"
+            disabled="{{!canSubmit}}">
+      <text space="nbsp">登  录</text>
+    </button>
+  </view>
+</view>

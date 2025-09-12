@@ -1,0 +1,51 @@
+<!--pages/order/order.wxml-->
+<view class="page">
+  <!-- 顶部标题（用系统导航栏标题即可，页面内不再重复大标题） -->
+
+  <scroll-view scroll-y class="list" show-scrollbar="false">
+    <block wx:for="{{orders}}" wx:key="id">
+      <view class="card">
+        <!-- 门店与状态 -->
+        <view class="store-row">
+          <view class="tag">自提</view>
+          <text class="store">{{item.store}}</text>
+          <text class="status">{{item.status}}</text>
+        </view>
+
+        <!-- 商品区：只展示前2个，若收起则省略号；展开后展示全部 -->
+        <block wx:for="{{item.showAll ? item.items : item.items.slice(0,2)}}" wx:key="idx">
+          <view class="goods-row">
+            <image class="thumb" src="{{item.pic}}" mode="aspectFill" />
+            <view class="goods-info">
+              <view class="name">{{item.name}}</view>
+              <view class="spec">{{item.spec}}</view>
+            </view>
+            <text class="qty">x{{item.qty}}</text>
+          </view>
+        </block>
+
+        <!-- 订单时间与合计 -->
+        <view class="meta">
+          <text class="time">{{item.time}}</text>
+          <text class="total">共{{item.totalCount}}件商品 合计：¥{{item.amount}}</text>
+        </view>
+
+        <!-- 操作区：更多、再来一单（无开发票） -->
+        <view class="actions">
+          <view class="link" bindtap="onToggleMore" data-id="{{item.id}}">
+            {{item.showAll ? '收起' : '更多'}}
+          </view>
+
+          <view class="right">
+            <button class="btn outline" hover-class="none" bindtap="onReorder" data-id="{{item.id}}">
+              再来一单
+            </button>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 空态 -->
+    <view wx:if="{{!orders.length}}" class="empty">暂无订单</view>
+  </scroll-view>
+</view>
